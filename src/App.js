@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  
+  //defining curruent time to set the value of useState "setting initial value" 
+  const now = new Date().toLocaleTimeString();
+  const [time, setTime] = useState(now);
+
+  //! creating a function to update the time->
+  function updateTime(){
+    const newTime = new Date().toLocaleTimeString();
+    setTime(newTime);
+  }
+
+  //! Setting a interval of 1 sec to re-render the updated time by using useState hook-->
+  setInterval(updateTime, 1000);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        {/*Declaring TIME*/}
+        <h1>{time}</h1>
+      </div>
+      <div className="footer">Created by Ayan Ansari with ❤️</div>
     </div>
   );
 }
